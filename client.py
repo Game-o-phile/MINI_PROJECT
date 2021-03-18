@@ -40,12 +40,11 @@ def transactionPage(win, player, image):
     text = font3.render('To whom do you want to pay', 1, black, white)
     win.blit(text, (10, 100))
 
-    ip = str(input())
+   
 
     text = font3.render('How much do you want to pay (no. of bitcoins):', 1, black, white)
     win.blit(text, (10, 190))
 
-    amt = int(input())
 
     pygame.display.update()
 
