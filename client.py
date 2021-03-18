@@ -31,6 +31,24 @@ class Player:
         self.private_key = random.randint(10, 100000000)
         self.public_key = random.randrange(10, 100000000)
 
+def transactionPage(win, player, image):
+    win.fill(white)
+    win.blit(image, (0,0))
+    # text
+    text = font3.render('Transactions' , 1, black, white)  # 1 is for bold or italics (check)
+    win.blit(text, (10, 10))
+    text = font3.render('To whom do you want to pay', 1, black, white)
+    win.blit(text, (10, 100))
+
+    ip = str(input())
+
+    text = font3.render('How much do you want to pay (no. of bitcoins):', 1, black, white)
+    win.blit(text, (10, 190))
+
+    amt = int(input())
+
+    pygame.display.update()
+
 def LandingPage(win, player, image):
     win.fill(white)
     # image
@@ -99,18 +117,18 @@ def main(p):
                     run = False
                     pygame.quit()
                     
-                if event.key == pygame.K_r:
-                    LandingPage(win, p, image)
-
-                if event.key == pygame.K_1:
-                    transaction()
-                if event.key == pygame.K_2:
                     
+                if event.key == pygame.K_1:
+                    print("Key 1 is pressed")
+                    transactionPage(win, p, image)
+                if event.key == pygame.K_2:
+                    print("Key 2 is pressed")
                 if event.key == pygame.K_3:
-
+                    print("Key 3 is pressed")
                 if event.key == pygame.K_4:
-
+                    print("Key 4 is pressed")
                 if event.key == pygame.K_5:
+                    print("Key 5 is pressed")
 
 
 p=Player('Pranav')
