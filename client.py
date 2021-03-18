@@ -40,12 +40,9 @@ def transactionPage(win, player, image):
     text = font3.render('To whom do you want to pay', 1, black, white)
     win.blit(text, (10, 100))
 
-    ip = str(input())
-
+    
     text = font3.render('How much do you want to pay (no. of bitcoins):', 1, black, white)
     win.blit(text, (10, 190))
-
-    amt = int(input())
 
     pygame.display.update()
 
@@ -116,7 +113,9 @@ def main(p):
                 if event.key == pygame.K_RETURN:
                     run = False
                     pygame.quit()
-                    
+                
+                if event.key == pygame.K_r:
+                    LandingPage(win, p, image)     
                     
                 if event.key == pygame.K_1:
                     print("Key 1 is pressed")
