@@ -11,6 +11,7 @@ height = infoObject.current_h
 font1 = pygame.font.SysFont('arial', 80, bold=True)
 font2 = pygame.font.SysFont('arial', 18, bold=True)
 font3 = pygame.font.SysFont('arial', 60, bold=True, italic=True)
+font4 = pygame.font.SysFont('arial', 50, bold=True)
 
 # COLOR
 black = (0, 0, 0)
@@ -21,6 +22,9 @@ blue = (0, 0, 255)
 
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Client")
+
+clock = pygame.time.Clock()
+
 
 
 class Player:
@@ -50,7 +54,6 @@ def transactionPage(win, player, image):
 
 
 def LandingPage(win, player, image):
-    win.fill(white)
     # image
     win.blit(image, (0, 0))
 
@@ -72,7 +75,6 @@ def LandingPage(win, player, image):
 
 
 def welcome(win, player, image):
-    win.fill(white)
     win.blit(image, (0, 0))
 
     # texts
@@ -94,11 +96,32 @@ def welcome(win, player, image):
 
     pygame.display.update()
 
+def transaction(win, player, image):
+    str = ""
+    win.blit(image, (0, 0))
+    transfer_rect=pygame.Rect(width//2,height//2,100,50)
+
+    run=True
+    while run:
+        clock.tick(60)
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:
+                    run=False
+                    break
+                if event.key == pygame.K_BACKSPACE:
+                    str=str[:-1]
+                else:
+                    str+=event.unicode
+
+        pygame.draw.rect(win,white,transfer_rect)
+        num_input = font1.render(str, 1,black,white)
+        win.blit(num_input, ((transfer_rect.x*2)+5,(transfer_rect.y*2)+5))
+        pygame.display.update()
+
 
 def main(p):
     run = True
-
-    clock = pygame.time.Clock()
 
     image = pygame.transform.scale(
         pygame.image.load('images/background.jpg'), (width, height))
@@ -123,19 +146,17 @@ def main(p):
                     LandingPage(win, p, image)
 
                 if event.key == pygame.K_1:
-                    print("Key 1 is pressed")
-                    transactionPage(win, p, image)
-                if event.key == pygame.K_2:
-                    print("Key 2 is pressed")
-                if event.key == pygame.K_3:
-                    print("Key 3 is pressed")
-                if event.key == pygame.K_4:
-                    print("Key 4 is pressed")
-                if event.key == pygame.K_5:
-                    print("Key 5 is pressed")
+                    transaction(win, p, image)
+                # if event.key == pygame.K_2:
+                #
+                # if event.key == pygame.K_3:
+                #
+                # if event.key == pygame.K_4:
+                #
+                # if event.key == pygame.K_5:
+
 
 
 p = Player('Pranav')
 main(p)
-
 
